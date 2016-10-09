@@ -165,8 +165,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\assets\css\site.css" />
+    <Content Include="app\components\home\home.html" />
+    <Content Include="app\components\home\homeController.js" />
+    <Content Include="app\components\home\homeModule.js" />
+    <Content Include="app\components\login\login.html" />
+    <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\loginModule.js" />
+    <Content Include="app\components\main\mainController.js" />
+    <Content Include="app\components\orders\orders.html" />
+    <Content Include="app\components\orders\ordersController.js" />
+    <Content Include="app\components\orders\ordersModule.js" />
+    <Content Include="app\components\signup\signup.html" />
+    <Content Include="app\components\signup\signupController.js" />
+    <Content Include="app\components\signup\signupModule.js" />
+    <Content Include="app\services\authInterceptorService.js" />
+    <Content Include="app\services\authService.js" />
+    <Content Include="app\services\ordersService.js" />
+    <Content Include="App_Data\WorkMarket_log.ldf" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\loading-bar.css" />
+    <Content Include="Content\loading-bar.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\index.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="scripts\angular-local-storage.js" />
+    <Content Include="scripts\angular-local-storage.min.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\loading-bar.js" />
+    <Content Include="scripts\loading-bar.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +233,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\WorkMarket" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-local-storage.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -192,7 +246,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="app\assets\img\" />
+    <Folder Include="app\components\shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
