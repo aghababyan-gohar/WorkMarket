@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WorkMarket.BL.DTOs.Auth;
 using WorkMarket.BL.Services.Auth;
+using WorkMarket.Mappings;
 using WorkMarket.ViewModels;
 
 namespace WorkMarket.Controllers
@@ -27,25 +24,28 @@ namespace WorkMarket.Controllers
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(UserViewModel userModel)
-        {
+        {            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //TODO: add automapper mapping here
-            var user = new UserDTO
+            try
             {
-                UserName = userModel.UserName,
-                Password = userModel.Password
-            };
-            IdentityResult result = await _service.RegisterUser(user);
+                var user = userModel.MapTo<UserDTO>();
 
-            IHttpActionResult errorResult = GetErrorResult(result);
+                IdentityResult result = await _service.RegisterUser(user);
 
-            if (errorResult != null)
+                IHttpActionResult errorResult = GetErrorResult(result);
+
+                if (errorResult != null)
+                {
+                    return errorResult;
+                }
+            }
+            catch (AutoMapperMappingException ex)
             {
-                return errorResult;
+                return BadRequest();
             }
 
             return Ok();
