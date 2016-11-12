@@ -1,18 +1,11 @@
-﻿using AutoMapper;
+﻿using Autofac;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using WorkMarket.BL.DTOs.Auth;
-using WorkMarket.BL.Mappings;
-using WorkMarket.Mappings;
+using WorkMarket.App_Start;
 using WorkMarket.Providers;
-using WorkMarket.ViewModels;
 
 [assembly: OwinStartup(typeof(WorkMarket.API.Startup))]
 namespace WorkMarket.API
@@ -21,22 +14,25 @@ namespace WorkMarket.API
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
+            var container = AutofacConfig.RegisterDependencies(config);
+
+            ConfigureOAuth(app, container);            
             WebApiConfig.Register(config);
+            
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
 
         }
 
-        private void ConfigureOAuth(IAppBuilder app)
+        private void ConfigureOAuth(IAppBuilder app, IContainer container)
         {
             OAuthAuthorizationServerOptions oAuthServerOptions = new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new SimpleAuthorizationServerProvider()
+                Provider = container.Resolve<ISimpleAuthorizationServerProvider>()
             };
 
             app.UseOAuthAuthorizationServer(oAuthServerOptions);

@@ -2,12 +2,19 @@
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WorkMarket.BL.ServiceContracts.Auth;
 using WorkMarket.BL.Services.Auth;
 
 namespace WorkMarket.Providers
 {
-    public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
+    public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider, ISimpleAuthorizationServerProvider
     {
+        IAuthService _service;
+        public SimpleAuthorizationServerProvider(IAuthService service)
+        {
+            _service = service;
+        }
+
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
@@ -18,15 +25,12 @@ namespace WorkMarket.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (AuthService _service = new AuthService())
-            {
-                IdentityUser user = await _service.FindUser(context.UserName, context.Password);
+            IdentityUser user = await _service.FindUser(context.UserName, context.Password);
 
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
+            if (user == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);

@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WorkMarket.BL.DTOs.Auth;
+using WorkMarket.BL.ServiceContracts.Auth;
 using WorkMarket.BL.Services.Auth;
 using WorkMarket.Mappings;
 using WorkMarket.ViewModels;
@@ -12,12 +13,11 @@ namespace WorkMarket.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : BaseController
     {
-        //TODO: Add dependency injection here
-        private AuthService _service;
+        private IAuthService _service;
 
-        public AccountController()
+        public AccountController(IAuthService service)
         {
-            _service = new AuthService();
+            _service = service;
         }
 
 
