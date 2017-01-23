@@ -227,7 +227,6 @@
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
     <Content Include="app\services\ordersService.js" />
-    <Content Include="App_Data\WorkMarket_log.ldf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -285,7 +284,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\WorkMarket" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\angular-local-storage.min.js.map" />
     <Content Include="scripts\angular-route.min.js.map" />
@@ -300,6 +298,7 @@
   <ItemGroup>
     <Folder Include="app\assets\img\" />
     <Folder Include="app\components\shared\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
